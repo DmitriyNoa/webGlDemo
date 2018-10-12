@@ -52,7 +52,8 @@ const demo = () => {
         temperature: 0.0
     };
 
-    let texture = loadTexture(gl,img2);
+    let texture = loadTexture(gl,img1);
+    let texture2 = loadTexture(gl,img2);
 
 
     // Resize canvas and viewport
@@ -81,7 +82,10 @@ const demo = () => {
         geometryBuffer,
         attributes,
         uniforms,
-        textures:texture,
+        textures: {
+            texture: texture,
+            texture2: texture2
+        },
         powers: powers
     }));
 }
