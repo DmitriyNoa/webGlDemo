@@ -15,55 +15,55 @@ import { loadTexture } from "./textures";
 import img1 from "./textures/sun1.jpg";
 import img2 from "./textures/sun2.jpg";
 const demo = () => {
-  // Create program
-  const canvas = document.getElementById('canvas');
-  const gl = canvas.getContext('webgl');
+    // Create program
+    const canvas = document.getElementById('canvas');
+    const gl = canvas.getContext('webgl');
 
-  const shaders = [
-    { src: fragmentShaderSrc, type: gl.FRAGMENT_SHADER },
-    { src: vertexShaderSrc, type: gl.VERTEX_SHADER }
-  ];
+    const shaders = [
+        { src: fragmentShaderSrc, type: gl.FRAGMENT_SHADER },
+        { src: vertexShaderSrc, type: gl.VERTEX_SHADER }
+    ];
 
-  const program = createProgram(gl, shaders);
+    const program = createProgram(gl, shaders);
 
-  const geometryBuffer = createBuffer(gl);
+    const geometryBuffer = createBuffer(gl);
 
-  // Set up attributes and uniforms
-  const attributes = {
-    position: gl.getAttribLocation(program, 'a_position'),
-      brightness: gl.getAttribLocation(program, 'a_brightness')
-  };
+    // Set up attributes and uniforms
+    const attributes = {
+        position: gl.getAttribLocation(program, 'a_position'),
+        brightness: gl.getAttribLocation(program, 'a_brightness')
+    };
 
-  const uniforms = {
-    resolution: gl.getUniformLocation(program, 'u_resolution'),
-      iTime: gl.getUniformLocation(program, 'iTime'),
-      coronaPower: gl.getUniformLocation(program, 'coronaPower'),
-      temperature: gl.getUniformLocation(program, 'temperature'),
-    millis: gl.getUniformLocation(program, 'u_millis'),
-      iChannel0: gl.getUniformLocation(program, 'iChannel0'),
-      iChannel1: gl.getUniformLocation(program, 'iChannel1')
-  };
+    const uniforms = {
+        resolution: gl.getUniformLocation(program, 'u_resolution'),
+        iTime: gl.getUniformLocation(program, 'iTime'),
+        coronaPower: gl.getUniformLocation(program, 'coronaPower'),
+        temperature: gl.getUniformLocation(program, 'temperature'),
+        millis: gl.getUniformLocation(program, 'u_millis'),
+        iChannel0: gl.getUniformLocation(program, 'iChannel0'),
+        iChannel1: gl.getUniformLocation(program, 'iChannel1')
+    };
 
-  // Set WebGL program here (we have only one)
-  gl.useProgram(program);
+    // Set WebGL program here (we have only one)
+    gl.useProgram(program);
 
-  let powers = {
-      coronaPower: 0.1,
-      temperature: 0.0
-  };
+    let powers = {
+        coronaPower: 0.05,
+        temperature: 0.0
+    };
 
-  let texture = loadTexture(gl,img2);
+    let texture = loadTexture(gl,img2);
 
 
-  // Resize canvas and viewport
-  const resize = () => {
-    resizeCanvas(gl.canvas);
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-  };
+    // Resize canvas and viewport
+    const resize = () => {
+        resizeCanvas(gl.canvas);
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    };
 
-  // Setup canvas
-  window.onresize = resize;
-  resize();
+    // Setup canvas
+    window.onresize = resize;
+    resize();
 
 
 
@@ -73,7 +73,7 @@ const demo = () => {
     });
 
     document.getElementById("temperature").addEventListener("click", () => {
-          powers.temperature +=0.05;
+        powers.temperature +=0.05;
     });
 
     // Start rendering
