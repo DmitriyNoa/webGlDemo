@@ -19,6 +19,9 @@ varying vec3 vNormal;
 uniform vec2 u_resolution;
 uniform float u_millis;
 
+uniform float temperature;
+uniform float coronaPower;
+
 float snoise(vec3 uv, float res)	// by trisomie21
 {
 	const vec3 s = vec3(1e0, 1e2, 1e4);
@@ -55,7 +58,7 @@ void main()
 	float radius		= 0.24 + brightness * 0.2;
 	float invRadius 	= 1.0/radius;
 
-	vec3 orange			= vec3( 0.8, 0.65, 0.3 );
+	vec3 orange			= vec3( (1.0 - temperature), temperature, temperature );
 	vec3 orangeRed		= vec3( 0.8, 0.35, 0.1 );
 	float time		= u_millis * 0.1;
 	float aspect	= u_resolution.x/u_resolution.y;
@@ -107,6 +110,6 @@ void main()
 
 	float starGlow	= min( max( 1.0 - dist * ( 1.0 - brightness ), 0.0 ), 1.0 );
 	//fragColor.rgb	= vec3( r );
-	gl_FragColor.rgb	= vec3( f * ( 0.75 + brightness * 0.3 ) * orange ) + starSphere + corona * orange + starGlow * orangeRed;
+	gl_FragColor.rgb	= vec3( f * ( 0.75 + brightness * 0.3 ) * orange  ) + starSphere + corona * orange* coronaPower + starGlow * orangeRed * coronaPower;
 	gl_FragColor.a		= 1.0;
 }

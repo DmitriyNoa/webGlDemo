@@ -30,12 +30,15 @@ const demo = () => {
 
   // Set up attributes and uniforms
   const attributes = {
-    position: gl.getAttribLocation(program, 'a_position')
+    position: gl.getAttribLocation(program, 'a_position'),
+      brightness: gl.getAttribLocation(program, 'a_brightness')
   };
 
   const uniforms = {
     resolution: gl.getUniformLocation(program, 'u_resolution'),
       iTime: gl.getUniformLocation(program, 'iTime'),
+      coronaPower: gl.getUniformLocation(program, 'coronaPower'),
+      temperature: gl.getUniformLocation(program, 'temperature'),
     millis: gl.getUniformLocation(program, 'u_millis'),
       iChannel0: gl.getUniformLocation(program, 'iChannel0'),
       iChannel1: gl.getUniformLocation(program, 'iChannel1')
@@ -43,6 +46,11 @@ const demo = () => {
 
   // Set WebGL program here (we have only one)
   gl.useProgram(program);
+
+  let powers = {
+      coronaPower: 0.1,
+      temperature: 0.0
+  };
 
   let texture = loadTexture(gl,img2);
 
@@ -57,14 +65,25 @@ const demo = () => {
   window.onresize = resize;
   resize();
 
-  // Start rendering
-  requestAnimationFrame(now => draw(gl, now, {
-    geometryBuffer,
-    attributes,
-    uniforms,
-    textures:texture
-  }));
 
+
+
+    document.getElementById("brightness").addEventListener("click", () => {
+        powers.coronaPower +=0.05;
+    });
+
+    document.getElementById("temperature").addEventListener("click", () => {
+          powers.temperature +=0.05;
+    });
+
+    // Start rendering
+    requestAnimationFrame(now => draw(gl, now, {
+        geometryBuffer,
+        attributes,
+        uniforms,
+        textures:texture,
+        powers: powers
+    }));
 }
 
 export default demo;
