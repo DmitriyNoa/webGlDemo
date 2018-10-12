@@ -1,4 +1,0 @@
-*.log
-node_modules
-public/assets/js
-package-lock.json
