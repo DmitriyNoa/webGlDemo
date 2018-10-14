@@ -19,6 +19,8 @@ const demo = () => {
     const canvas = document.getElementById('canvas');
     const gl = canvas.getContext('webgl');
 
+
+
     const shaders = [
         { src: fragmentShaderSrc, type: gl.FRAGMENT_SHADER },
         { src: vertexShaderSrc, type: gl.VERTEX_SHADER }

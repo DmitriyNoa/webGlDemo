@@ -6,8 +6,8 @@ const draw = (gl, now, state) => {
     gl.vertexAttribPointer(state.attributes.position, 2, gl.FLOAT, false, 0, 0);
     gl.uniform2f(state.uniforms.resolution, window.innerWidth, window.innerHeight);
     gl.uniform1f(state.uniforms.millis, now / 1000);
-    gl.uniform1f(state.uniforms.iChannel0, state.textures.texture);
-    gl.uniform1f(state.uniforms.iChannel1, state.textures.texture2);
+    gl.uniform1i(state.uniforms.iChannel0, state.textures.texture);
+    gl.uniform1i(state.uniforms.iChannel1, state.textures.texture2);
 
     gl.uniform1f(state.uniforms.coronaPower, state.powers.coronaPower);
     gl.uniform1f(state.uniforms.temperature, state.powers.temperature);
