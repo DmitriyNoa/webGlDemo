@@ -1,4 +1,6 @@
+let t = 0;
 const draw = (gl, now, state) => {
+    t+=0.001;
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.bindBuffer(gl.ARRAY_BUFFER, state.geometryBuffer);
 
@@ -12,7 +14,7 @@ const draw = (gl, now, state) => {
     gl.uniform1f(state.uniforms.coronaPower, state.powers.coronaPower);
     gl.uniform1f(state.uniforms.temperature, state.powers.temperature);
 
-    gl.uniform1f(state.uniforms.iTime, now);
+    gl.uniform1f(state.uniforms.iTime, t);
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
