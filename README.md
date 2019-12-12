@@ -1,5 +1,7 @@
 # WebGL Starter
 
+The updatable star with shaders
+
 ![WebGL Logo](./logo.png)
 
 Simple starter project to start developing with WebGL easily. With Webpack, ES6 transpiling and page reloading.
